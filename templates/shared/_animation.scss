@@ -1,0 +1,40 @@
+@mixin animate {
+  &[data-placement^='bottom'][data-animation='slide'] {
+    animation: animation-slide-from-bottom 1s;
+  }
+
+  &[data-placement^='top'][data-animation='slide'] {
+    animation: animation-slide-from-top 1s;
+  }
+
+  &[data-animation='fade'] {
+    animation: animation-fade 1s;
+  }
+}
+
+@keyframes animation-slide-from-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes animation-slide-from-top {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes animation-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

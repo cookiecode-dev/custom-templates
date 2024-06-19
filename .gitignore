@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+.vscode/
+dist/
+test/proxy/.http-mitm-proxy/
+.idea/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+

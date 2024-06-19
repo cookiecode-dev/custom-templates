@@ -1,0 +1,224 @@
+@use '../shared/animation';
+
+:host {
+  all: initial !important;
+  contain: content !important;
+  display: contents !important;
+}
+
+:host([hidden]) {
+  display: none !important;
+}
+
+:host .cc_root {
+  z-index: 2147483647;
+
+  left: 0;
+  right: 0;
+
+  @include animation.animate;
+
+  &[data-attachment='fixed'] {
+    position: fixed;
+  }
+
+  &[data-attachment='sticky'] {
+    position: sticky;
+  }
+
+  &[data-placement='top'] {
+    top: 0;
+  }
+
+  &[data-placement='bottom'] {
+    bottom: 0;
+  }
+}
+
+.cc_root {
+  display: flow-root; /* prevent margin collapse */
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.cc_root[hidden] {
+  display: none !important;
+}
+
+.cc_root > div {
+  background-color: #055780;
+  background-color: var(--background-color, #055780);
+  padding: 0.05px; /* prevent margin collapse */
+  display: flex;
+  align-items: center;
+}
+
+.cc_root[data-placement='bottom'] > div {
+  box-shadow: 0 0 2px #000;
+  margin-top: 2px;
+}
+
+.cc_text {
+  position: relative;
+  color: #fff;
+  color: var(--text-color, #fff);
+  margin: 15px;
+  line-height: 26px;
+  flex: 1 1 100%;
+}
+
+.cc_text a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.cc_text a:after {
+  content: '';
+  display: block;
+}
+
+.cc_link_privacy_statement {
+  display: none;
+}
+
+.cc_root[data-privacy-statement='visible'] .cc_link_privacy_statement {
+  display: initial;
+}
+
+.cc_buttons {
+  display: inline-grid;
+  grid-template-areas: 'button_settings button_allowall';
+
+  column-gap: 20px;
+  row-gap: 15px;
+  align-items: center;
+  margin: 15px 30px;
+}
+
+.cc_root[data-reject='button'] .cc_buttons {
+  grid-template-areas:
+    'button_settings button_allowall'
+    'button_settings button_rejectall';
+}
+
+.cc_buttons button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 21px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.cc_buttons button.cc_button_allowall {
+  grid-area: button_allowall;
+  background-color: #fff;
+  background-color: var(--button-background-color, #fff);
+  color: #000;
+  color: var(--button-background-color-b, #000);
+}
+
+.cc_buttons .cc_button_rejectall {
+  display: none;
+  grid-area: button_rejectall;
+  background-color: #fff;
+  background-color: var(--button-background-color, #fff);
+  color: #000;
+  color: var(--button-background-color-b, #000);
+}
+
+.cc_root[data-reject='button'] .cc_buttons .cc_button_rejectall {
+  display: block;
+}
+
+.cc_buttons button.cc_button_settings {
+  grid-area: button_settings;
+  background-color: transparent;
+  color: #fff;
+  color: var(--text-color, #fff);
+}
+
+.cc_text > span {
+  display: none;
+}
+
+.cc_text > svg {
+  display: none;
+}
+
+/* Desktop only */
+
+@media (min-width: 600px) {
+  .cc_text {
+    padding-left: 75px;
+  }
+
+  .cc_text > svg {
+    display: block;
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: 0px;
+    top: calc(min(100% - 52px, 8px));
+  }
+
+  .cc_text > svg path {
+    fill: #ffffff;
+    fill: var(--text-color, #ffffff);
+  }
+
+  .cc_text > span:nth-child(1) {
+    display: inline;
+  }
+}
+
+@media (max-width: 800px) {
+  .cc_buttons {
+    grid-template-areas:
+      'button_settings'
+      'button_allowall'
+      'button_rejectall';
+  }
+
+  .cc_root[data-reject='button'] .cc_buttons {
+    grid-template-areas:
+      'button_settings'
+      'button_allowall'
+      'button_rejectall';
+  }
+}
+
+/* Mobile only */
+
+@media (max-width: 600px) {
+  .cc_root {
+    font-size: 12px;
+  }
+
+  .cc_text {
+    margin: 10px;
+  }
+
+  .cc_buttons {
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 10px 10px;
+  }
+
+  .cc_buttons button {
+    padding: 4px 8px;
+  }
+
+  .cc_text > span:nth-child(2) {
+    display: inline;
+  }
+}

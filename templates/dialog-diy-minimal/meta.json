@@ -1,0 +1,7 @@
+{
+    "v": "1",
+    "type": "template",
+    "name": "diy-simple",
+    "script": "builder",
+    "sandbox": "never"
+}

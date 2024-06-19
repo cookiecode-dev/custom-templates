@@ -1,0 +1,32 @@
+<dialog>
+  <header>
+    <div class="title" tpl:text="translation.CookiePreferences"></div>
+    <div class="subtitle" tpl:text="translation.PoweredBy,reseller.name"></div>
+  </header>
+  <main>
+    <p class="intro-specific" tpl:text="intro"></p>
+    <p class="intro-generic" tpl:text="translation.WhatIsCookie"></p>
+    <div class="services">
+      <section class="service-group" tpl:foreach="serviceGroups as serviceGroup">
+        <div class="service-group-header">
+          <div class="name" tpl:text="serviceGroup.name"></div>
+          <div class="description" tpl:text="serviceGroup.description"></div>
+          <div class="action">
+            <input type="checkbox" class="action-consent-service-group" tpl:attr="name=serviceGroup.id" />
+          </div>
+        </div>
+        <div class="service" tpl:foreach="serviceGroup.services as service">
+          <div class="name" tpl:text="service.name"></div>
+          <div class="description" tpl:text="service.description"></div>
+          <div class="action">
+            <input type="checkbox" class="action-consent-service" tpl:attr="name=service.id" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <button value="save" class="button-save" tpl:text="translation.Save" tabindex="1"></button>
+    <button value="close" class="button-close" tpl:text="translation.Close" tabindex="1"></button>
+  </footer>
+</dialog>
